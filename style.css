@@ -515,6 +515,70 @@ section { padding: 80px 0; }
   text-align: center;
 }
 
+/* ── Language picker ─────────────────────────────────────────────────── */
+.lang-picker { position: relative; }
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;   /* flag emoji needs a bigger base size */
+  color: var(--navy);
+  background: var(--gray-lt);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: .15s;
+  white-space: nowrap;
+}
+.lang-btn:hover { background: var(--teal-lt); border-color: var(--teal); color: var(--teal); }
+.lang-btn svg { width: 12px; height: 12px; opacity: .55; transition: transform .2s; }
+.lang-dropdown.open + .lang-btn svg,
+.lang-dropdown.open ~ .lang-btn svg { transform: rotate(180deg); }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  overflow: hidden;
+  min-width: 140px;
+  z-index: 200;
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown [data-lang] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background .1s;
+  white-space: nowrap;
+  justify-content: space-between;
+}
+.lang-dropdown [data-lang]:hover { background: var(--gray-lt); }
+.lang-dropdown [data-lang].active { color: var(--teal); background: var(--teal-lt); }
+.lang-dropdown [data-lang].active::after {
+  content: '✓';
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--teal);
+  font-weight: 700;
+}
+.lang-flag { font-size: 22px; line-height: 1; }
+
+/* helper for inline teal spans inside i18n-html */
+.teal { color: var(--teal); }
+
 /* ── Responsive ──────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
