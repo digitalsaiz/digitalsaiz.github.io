@@ -491,13 +491,17 @@ document.querySelectorAll('.lang-picker').forEach(picker => {
   document.addEventListener('click', () => dropdown.classList.remove('open'));
 });
 
-// ── Store link placeholders ──────────────────────────────────────────────
-const IOS_URL     = '#';   // e.g. 'https://apps.apple.com/app/id6762950386'
-const ANDROID_URL = '#';   // e.g. 'https://play.google.com/store/apps/details?id=com.admintca.note'
+// ── Store links ──────────────────────────────────────────────────────────
+const IOS_URL     = 'https://apps.apple.com/us/app/note-tca/id6762950386';
+const ANDROID_URL = '#';   // TODO: replace once published — 'https://play.google.com/store/apps/details?id=com.admintca.note'
 
 ['ios-link', 'ios-link-bottom'].forEach(id => {
   const el = document.getElementById(id);
-  if (el) el.href = IOS_URL;
+  if (el) {
+    el.href = IOS_URL;
+    el.target = '_blank';
+    el.rel = 'noopener';
+  }
 });
 ['android-link', 'android-link-bottom'].forEach(id => {
   const el = document.getElementById(id);
